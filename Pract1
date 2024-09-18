@@ -1,0 +1,59 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+int duplicados(int* array, int size) {
+    int temp;
+    
+
+    
+    for (int i = 0; i < size - 1; i++) {
+        for (int j = 0; j < size - i - 1; j++) {
+            if (array[j] > array[j + 1]) {
+                 temp = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = temp;
+            }
+        }
+    }
+
+    
+    int unico = 1;  
+    for (int i = 1; i < size; i++) {
+        if (array[i] != array[i - 1]) {
+            array[unico++] = array[i];
+        }
+    }
+
+    return unico;
+}
+
+int main() {
+    int n=10;
+    int array[]={1,1,2,2,3,3,4,4,5,5};
+
+     printf("el arreglo es:\n");
+
+    for(int i=0; i<10; i++){
+        printf("%d\n",array[i]);
+    }
+
+   
+    int newSize = duplicados(array, n);
+
+    
+    printf("Arreglo sin duplicados:\n");
+    for (int i = 0; i < newSize; i++) {
+        printf("%d ", array[i]);
+    }
+    printf("\n ");
+
+     
+
+
+
+    
+    free(array);
+
+    return 0;
+}
